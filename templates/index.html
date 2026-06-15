@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval System</title>
+    <style>
+        /* ---------- Global Reset ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a3d62;      /* Deep bank blue */
+            --secondary: #1e6091;    /* Accent blue */
+            --accent: #38ada9;       /* Teal */
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --light: #f4f7fb;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --border: #d6dee7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a3d62 0%, #3c6382 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            color: var(--text);
+        }
+
+        /* ---------- Card Container ---------- */
+        .card {
+            background: var(--white);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        /* ---------- Header ---------- */
+        #heading {
+            text-align: center;
+            background: var(--primary);
+            color: var(--white);
+            padding: 25px 20px;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        #heading .bank-icon {
+            display: block;
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            background: var(--secondary);
+            color: #d8e6f2;
+            font-size: 13px;
+            padding: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* ---------- Form Body ---------- */
+        #input {
+            padding: 25px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        /* ---------- Inputs & Selects ---------- */
+        #input input,
+        #input select {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--light);
+            color: var(--text);
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        #input input::placeholder {
+            color: #97a6b5;
+        }
+
+        #input input:focus,
+        #input select:focus {
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(56, 173, 169, 0.18);
+        }
+
+        /* ---------- Button ---------- */
+        #btn {
+            display: block;
+            width: calc(100% - 44px);
+            margin: 5px 22px 25px;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: transform 0.15s ease, box-shadow 0.25s ease;
+        }
+
+        #btn:hover {
+            box-shadow: 0 8px 20px rgba(30, 96, 145, 0.4);
+            transform: translateY(-2px);
+        }
+
+        #btn:active {
+            transform: translateY(0);
+        }
+
+        /* ---------- Result ---------- */
+        #result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 22px 25px;
+            padding: 15px;
+            border-radius: 12px;
+            min-height: 10px;
+        }
+
+        #result:not(:empty) {
+            background: var(--light);
+            border: 1.5px dashed var(--accent);
+            color: var(--primary);
+        }
+
+        /* ---------- Mobile Responsive ---------- */
+        @media (max-width: 520px) {
+            body {
+                padding: 0;
+                align-items: stretch;
+            }
+
+            .card {
+                border-radius: 0;
+                margin: 0;
+                min-height: 100vh;
+                max-width: 100%;
+            }
+
+            #heading {
+                font-size: 22px;
+            }
+
+            #input {
+                padding: 20px 16px;
+            }
+
+            #btn {
+                width: calc(100% - 32px);
+                margin: 5px 16px 20px;
+            }
+
+            #result {
+                margin: 0 16px 20px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 id="heading">
+            <span class="bank-icon">🏦</span>
+            Loan Approval System
+        </h1>
+        <div class="subtitle">SECURE • FAST • RELIABLE</div>
+
+        <div id="input">
+            <div class="field">
+                <label for="Dependent">Number of Dependents</label>
+                <input type="number" id="Dependent" placeholder="Enter Dependents">
+            </div>
+
+            <div class="field">
+                <label for="education">Education</label>
+                <select id="education">
+                    <option value="1">Graduate</option>
+                    <option value="0">Not Graduate</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="self_emp">Self Employed</label>
+                <select id="self_emp">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="income">Annual Income</label>
+                <input type="number" id="income" placeholder="Income Annum">
+            </div>
+
+            <div class="field">
+                <label for="loan_amt">Loan Amount</label>
+                <input type="number" id="loan_amt" placeholder="Loan Amount">
+            </div>
+
+            <div class="field">
+                <label for="loan_trm">Loan Term</label>
+                <input type="number" id="loan_trm" placeholder="Loan Term">
+            </div>
+
+            <div class="field">
+                <label for="cibil">CIBIL Score</label>
+                <input type="number" id="cibil" placeholder="Cibil Score (500..)">
+            </div>
+
+            <div class="field">
+                <label for="residential">Residential Assets</label>
+                <input type="number" id="residential" placeholder="Residential Asset">
+            </div>
+
+            <div class="field">
+                <label for="commercial">Commercial Assets</label>
+                <input type="number" id="commercial" placeholder="Commercial Assets">
+            </div>
+
+            <div class="field">
+                <label for="luxury">Luxury Assets</label>
+                <input type="number" id="luxury" placeholder="Luxury Assets Value">
+            </div>
+
+            <div class="field">
+                <label for="bank">Bank Assets</label>
+                <input type="number" id="bank" placeholder="Bank Assets Value">
+            </div>
+        </div>
+
+        <button id="btn" onclick="PredictLoan()">Predict Loan Status</button>
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        async function PredictLoan() {
+            const data = {
+                dependents: Number(document.getElementById("Dependent").value),
+                education: Number(document.getElementById("education").value),
+                self_emp: Number(document.getElementById("self_emp").value),
+                income_annum: Number(document.getElementById("income").value),
+                loan_amount: Number(document.getElementById("loan_amt").value),
+                loan_term: Number(document.getElementById("loan_trm").value),
+                cibil_score: Number(document.getElementById("cibil").value),
+                residential: Number(document.getElementById("residential").value),
+                commercial: Number(document.getElementById("commercial").value),
+                luxury: Number(document.getElementById("luxury").value),
+                bank: Number(document.getElementById("bank").value)
+            };
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                document.getElementById("result").innerHTML =
+                    "Prediction is: " + result.prediction;
+            } catch (error) {
+                document.getElementById("result").innerHTML =
+                    "⚠️ Unable to connect to server";
+            }
+        }
+    </script>
+</body>
+</html>
+```
+
